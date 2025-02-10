@@ -26,18 +26,21 @@ public class TestWithMain {
         ChromeOptions options = new ChromeOptions();
       //  options.addArguments("--headless=new");
         options.addArguments("--headless", "--disable-gpu", "--no-sandbox");
-*/
-        // Create a temporary user-data directory
+      // Create a temporary user-data directory
         Path tempProfile = Files.createTempDirectory("chrome-profile");
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless", "new");
         options.addArguments("--user-data-dir=" + tempProfile.toAbsolutePath().toString());
         options.addArguments("--remote-allow-origins=*");  // Required for newer Chrome versions
+*/
 
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless", "--disable-gpu", "--no-sandbox");
+        driver = new ChromeDriver(options);
 
         //driver = new ChromeDriver();
-        driver = new ChromeDriver(options);
+      //  driver = new ChromeDriver(options);
 
         driver.get("https://www.facebook.com");
 
