@@ -8,9 +8,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 public class TestWithMain {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
 
         System.out.println("Testing started..");
 
@@ -18,8 +22,19 @@ public class TestWithMain {
 
         WebDriver driver = null;
 
+        /*
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
+      //  options.addArguments("--headless=new");
+        options.addArguments("--headless", "--disable-gpu", "--no-sandbox");
+*/
+        // Create a temporary user-data directory
+        Path tempProfile = Files.createTempDirectory("chrome-profile");
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless", "new");
+        options.addArguments("--user-data-dir=" + tempProfile.toAbsolutePath().toString());
+        options.addArguments("--remote-allow-origins=*");  // Required for newer Chrome versions
+
 
         //driver = new ChromeDriver();
         driver = new ChromeDriver(options);
