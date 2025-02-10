@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Duration;
 
 public class TestWithMain {
 
@@ -35,6 +36,8 @@ public class TestWithMain {
         options.addArguments("--remote-allow-origins=*");  // Required for newer Chrome versions
 */
 
+       // System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+
         ChromeOptions options = new ChromeOptions();
         //options.addArguments("--headless", "--disable-gpu", "--no-sandbox");
         options.addArguments("--headless");  // Run in headless mode
@@ -42,6 +45,9 @@ public class TestWithMain {
         options.addArguments("--no-sandbox"); // Bypass OS security model (important for AWS)
         options.addArguments("--disable-dev-shm-usage"); // Overcome limited resource issues in AWS
         options.addArguments("--remote-allow-origins=*"); // Required for ChromeDriver 111+
+        options.addArguments("--disable-notifications");
+        options.addArguments("--disable-popup-blocking");
+
 
         driver = new ChromeDriver(options);
 
@@ -49,7 +55,7 @@ public class TestWithMain {
       //  driver = new ChromeDriver(options);
 
         driver.get("https://www.facebook.com");
-
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1000));
         System.out.println("Title : " + driver.getTitle() );
         WebElement registrationButton = driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div/div/div[2]/div/div[1]/form/div[5]/a"));
         registrationButton.click();
