@@ -21,7 +21,7 @@ public class TestWithMain {
 
 
 
-        WebDriver driver = null;
+      //  WebDriver driver = null;
 
         /*
         ChromeOptions options = new ChromeOptions();
@@ -51,7 +51,18 @@ public class TestWithMain {
 
         driver = new ChromeDriver(options);
 */
-        driver = new ChromeDriver();
+
+        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+
+        ChromeOptions options = new ChromeOptions();
+        options.setBinary("/usr/bin/google-chrome");  // Set correct binary location
+        options.addArguments("--headless");           // Run in headless mode
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
+        WebDriver driver = new ChromeDriver(options);
+
+      //  driver = new ChromeDriver();
       //  driver = new ChromeDriver(options);
 
         driver.get("https://www.facebook.com");
