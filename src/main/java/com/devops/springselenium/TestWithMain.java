@@ -34,7 +34,7 @@ public class TestWithMain {
         options.addArguments("--headless", "new");
         options.addArguments("--user-data-dir=" + tempProfile.toAbsolutePath().toString());
         options.addArguments("--remote-allow-origins=*");  // Required for newer Chrome versions
-*/
+
 
        // System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
 
@@ -50,8 +50,8 @@ public class TestWithMain {
 
 
         driver = new ChromeDriver(options);
-
-        //driver = new ChromeDriver();
+*/
+        driver = new ChromeDriver();
       //  driver = new ChromeDriver(options);
 
         driver.get("https://www.facebook.com");

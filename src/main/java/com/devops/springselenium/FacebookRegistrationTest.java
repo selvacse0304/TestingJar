@@ -27,7 +27,7 @@ public class FacebookRegistrationTest {
         WebDriver driver = new ChromeDriver(options);
 
         // Open Facebook Registration page
-        driver.get("https://www.facebook.com/r.php");
+        driver.get("https://www.facebook.com/r.php?entry_point=login");
 
         // Create WebDriverWait instance for waiting until elements are available
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
