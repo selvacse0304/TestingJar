@@ -21,7 +21,7 @@ public class TestWithMain {
 
 
 
-      //  WebDriver driver = null;
+        WebDriver driver = null;
 
         /*
         ChromeOptions options = new ChromeOptions();
@@ -51,18 +51,25 @@ public class TestWithMain {
 
         driver = new ChromeDriver(options);
 */
+/*
 
         System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
 
+        // Configure Chrome options for headless mode
         ChromeOptions options = new ChromeOptions();
-        options.setBinary("/usr/bin/google-chrome");  // Set correct binary location
-        options.addArguments("--headless");           // Run in headless mode
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--headless");  // Run in headless mode
+        options.addArguments("--disable-gpu"); // Needed for headless mode
+        options.addArguments("--no-sandbox"); // Bypass OS security model (important for AWS EC2)
+        options.addArguments("--disable-dev-shm-usage"); // Avoid issues with limited resources
+        options.addArguments("--remote-allow-origins=*"); // Required for ChromeDriver 111+
 
+        // Initialize WebDriver with ChromeOptions
         WebDriver driver = new ChromeDriver(options);
+*/
 
-      //  driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
       //  driver = new ChromeDriver(options);
 
         driver.get("https://www.facebook.com");
